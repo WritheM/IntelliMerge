@@ -1,0 +1,8 @@
+*
+!.gitignore
+!lang
+!lang/*
+!README.md
+!.github
+!.github/*
+!.github/*/*
