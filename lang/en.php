@@ -7,6 +7,10 @@ global $cfg;
 $lang['site']['title'] = "IntelliMerge for Spotify";
 
 $lang['login'] = "Login";
+$lang['logout'] = "Logout";
+$lang['privacy'] = "Privacy";
+$lang['terms'] = "Terms";
+$lang['all_rights'] = "All rights reserved";
 $lang['changelog']['english_only'] = "We apologize the change-log is only available in English at this time.";
 
 $lang['vip_sign_up'] = "Sign Up Now";
@@ -57,6 +61,7 @@ $lang['vip_legal'] = "VIP Membership on {$lang['site']['title']} does not includ
 /**
  * index.php aka Home
  **/
+$lang['home']['title'] = "Home";
 $lang['home']['description'] = "With this helpful app, you'll be able to make Master Playlists that are smart enough to update themselves based on the contents of other playlists. Have you ever wanted to include a Spotify curated playlist that is frequently updated into your own custom playlist without having to keep track of what's new? Now you can. With {$lang['site']['title']} you can create playlist links that are frequently monitored for changes and propagated to your Master Playlist. Now you can merge Spotify playlists from any user like a pro.";
 $lang['home']['maintenace_mode']['title'] = "NOTICE";
 $lang['home']['maintenace_mode']['body'] = "Maintenance Mode is currently Enabled. We will be back shortly! Check <a target=\"_blank\" href=\"https://status.writhem.com/\">https://status.writhem.com/</a> for detailed information";
@@ -69,6 +74,7 @@ $lang['home']['changelog']['link'] = "For a full list of updates you can check t
 /**
  * about.php aka About/FAQ
  **/
+$lang['about']['title'] = "About/FAQ";
 $lang['about']['description'] = "The purpose of this site is to take several Spotify Playlists and generate a single playlist from them.<br/>The system then monitors those lists for changes and propagates any changes to the master list. This means that you can now follow spotify created lists or user created lists that change frequently to make your own mix in a single list. Ideal for mobile users. Can also be used to merge Spotify playlists!";
 $lang['about']['q_a']['first_run']['question'] = "Hey, I'm new. How do I merge my lists? What are all these buttons?";
 $lang['about']['q_a']['first_run']['answer']['intro'] = "First off. Welcome! Thank you for choosing {$lang['site']['title']}. Here is a quick crash course to getting your first Master Playlist set up and monitoring playlists for changes.";
@@ -116,16 +122,16 @@ $lang['about']['q_a']['changelog']['question'] = "Is there a changelog?";
 $lang['about']['q_a']['changelog']['answer'] = "Here is a copy of the updates as they were originally posted on the main page. Each named version is included below. <br />We are currently running version: {$cfg['app']['version']} build: {$cfg['app']['build']}";
 $lang['about']['stats']['question'] = "Show me some cool stats?";
 $lang['about']['stats']['answer']['intro'] = "Alright. We don't have a lot of data but";
-$lang['about']['stats']['answer']['points'] = [];
-array_push($lang['about']['stats']['answer']['points'], "We monitor lists for {$users} accounts");
-array_push($lang['about']['stats']['answer']['points'], "These users have {$mpls} master lists that are linked on Spotify");
-array_push($lang['about']['stats']['answer']['points'], "These users have created {$spls} playlist links");
+$lang['about']['stats']['answer']['points'] = []; 
+array_push($lang['about']['stats']['answer']['points'], "We monitor lists for %total_users% accounts");
+array_push($lang['about']['stats']['answer']['points'], "These users have %total_mpls% master lists that are linked on Spotify");
+array_push($lang['about']['stats']['answer']['points'], "These users have created %total_spls% playlist links");
 $lang['about']['stats']['answer']['outro'] = "And some specific technical stats on our last run";
-
 
 /**
  * editor.php aka Playlist Editor
  */
+$lang['editor']['title'] = "Playlist Editor";
 $lang['editor']['new_exceed_quota_basic'] = "You are unable to create or import any additional Master Playlists at this time. It seems you may have exceeded the quota of Master Playlists allocated to your account.";
 $lang['editor']['import_exceed_quota_basic'] = $lang['editor']['new_exceed_quota_basic'];
 $lang['editor']['tooltip_edit_links'] = "This will let you edit the linked playlists to this Master Playlist. Linked playlists are the source of songs in a Master Playlist.";
@@ -137,3 +143,8 @@ $lang['editor']['tooltip_view_on_spotify'] = "This lets you view the playlist on
 $lang['editor']['tooltip_link_to_spotify'] = "Create a link to a new Spotify Playlist. This will create this playlist on your Spotify account so that the system can start updating it there.";
 $lang['editor']['tooltip_help_title'] = "Are you feeling lost?";
 $lang['editor']['tooltip_help'] = "Any time you see this little <i class='mdi mdi-help-circle mdi-14px text-muted'></i> you can hover to show some help about what that function does. You may also want to head to the <a href='about.php' class='btn btn-sm btn-primary'>FAQ</a> for more help in what these buttons mean and how to create your first Master Playlist. (To make these help windows stay open, so that you can click the button inside, then just click the <i class='mdi mdi-help-circle mdi-14px text-muted'></i> to toggle the help window)";
+
+/**
+ * profile.php aka Profile
+ */
+$lang['profile']['title'] = "Profile";
