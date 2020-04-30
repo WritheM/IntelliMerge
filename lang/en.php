@@ -1,20 +1,39 @@
 <?php
 global $cfg;
 
+/**
+ * Used across several pages. Generic Language. Buttons. Etc.
+ */
 $lang['site']['title'] = "IntelliMerge for Spotify";
 
+$lang['login'] = "Login";
+$lang['changelog']['title'] = "Recent Changes";
+$lang['changelog']['link'] = "For a full list of updates you can check the&nbsp;<a href=\"about.php#changelog\">changelog</a>";
+$lang['changelog']['english_only'] = "We apologize the change-log is only available in English at this time.";
+$lang['vip_sign_up'] = "Sign Up Now";
+$lang['vip_manage'] = "Manage Your Subscription";
+
+/**
+ * index.php aka Home
+ **/
 $lang['home']['description'] = "With this helpful app, you'll be able to make Master Playlists that are smart 
     enough to update themselves based on the contents of other playlists. Have you ever wanted to include a Spotify 
     curated playlist that is frequently updated into your own custom playlist without having to keep track of what's new?
      Now you can. With {$lang['site']['title']} you can create playlist links that are frequently monitored for changes 
      and propagated to your Master Playlist. Now you can merge Spotify playlists from any user like a pro.";
-$lang['home']['recent_changes'] = "Recent Changes";
+$lang['home']['maintenace_mode']['title'] = "NOTICE";
+$lang['home']['maintenace_mode']['body'] = "Maintenance Mode is currently Enabled. We will be back shortly! Check <a target=\"_blank\" href=\"https://status.writhem.com/\">https://status.writhem.com/</a> for detailed information";
+$lang['home']['welcome_back'] = "Welcome back";
+$lang['home']['edit_button'] = "Edit Master Playlists";
+$lang['home']['not_logged_in'] = "You are not currently logged in. Please login to create a new Master Playlist or edit your existing Master Playlists";
 
-
+/**
+ * about.php aka About/FAQ
+ **/
 $lang['about']['description'] = "The purpose of this site is to take several Spotify Playlists and generate a single playlist from them.<br/>The system then monitors those lists for changes and propagates any changes to the master list. This means that you can now follow spotify created lists or user created lists that change frequently to make your own mix in a single list. Ideal for mobile users. Can also be used to merge Spotify playlists!";
 $lang['about']['q_a']['first_run']['question'] = "Hey, I'm new. How do I merge my lists? What are all these buttons?";
 $lang['about']['q_a']['first_run']['answer']['intro'] = "First off. Welcome! Thank you for choosing {$lang['site']['title']}. Here is a quick crash course to getting your first Master Playlist set up and monitoring playlists for changes.";
-$lang['about']['q_a']['first_run']['answer']['steps'] = array();
+$lang['about']['q_a']['first_run']['answer']['steps'] = [];
 array_push($lang['about']['q_a']['first_run']['answer']['steps'],['title'=>"Creating your first Master Playlist",
     'body'=>"The first thing you'll want to do is head to the <a href=\"editor.php\">Playlist Editor</a> and create a Master Playlist. This is the playlist that the system will change as your linked playlists change. You can <div class=\"btn btn-info btn-sm\"><i class=\"mdi mdi-14px mdi-arrow-down-bold-box\"></i></div>import an existing playlist from Spotify or <div class=\"btn btn-success btn-sm\"><i class=\"mdi mdi-14px mdi-new-box\"></i></div>create a new playlist"]);
 array_push($lang['about']['q_a']['first_run']['answer']['steps'],['title'=>"Creating Playlist Links to your Master Playlist",
@@ -33,51 +52,52 @@ $lang['about']['q_a']['vip']['answer'] = "With a VIP Membership, you can have al
                         {$lang['site']['title']} stays online and running smoothly. Thank you very
                         much for your support!";
 
-$lang['about']['vip_sign_up'] = "Sign Up Now";
-$lang['about']['vip_manage'] = "Manage Your Subscription";
-$lang['about']['vip_benefits'] = array();
-array_push($lang['about']['vip_benefits'],array('icon' => "text-box-multiple-outline",
+
+$lang['about']['vip_benefits'] = [];
+array_push($lang['about']['vip_benefits'],['icon' => "text-box-multiple-outline",
     'title' => "Longer Playlists",
-    'description' => "By default we only pull the first {$cfg['app']['playlist_limit_basic']} songs before we stop. If you have VIP we up that limit to {$cfg['app']['playlist_limit_vip']}."));
-array_push($lang['about']['vip_benefits'],array('icon' => "playlist-plus",
+    'description' => "By default we only pull the first {$cfg['app']['playlist_limit_basic']} songs before we stop. If you have VIP we up that limit to {$cfg['app']['playlist_limit_vip']}."]);
+array_push($lang['about']['vip_benefits'],['icon' => "playlist-plus",
     'title' => "More Playlists",
-    'description' => "Basic users are limited to only creating {$cfg['app']['playlist_count_basic']} Master Playlists that are updated. VIP users can make {$cfg['app']['playlist_count_vip']} Master Playlists."));
-array_push($lang['about']['vip_benefits'],array('icon' => "clock-fast",
+    'description' => "Basic users are limited to only creating {$cfg['app']['playlist_count_basic']} Master Playlists that are updated. VIP users can make {$cfg['app']['playlist_count_vip']} Master Playlists."]);
+array_push($lang['about']['vip_benefits'],['icon' => "clock-fast",
     'title' => "More frequent updates",
-    'description' => "Basic users only get their playlists updated once every {$cfg['app']['update_duration_basic']} but as a VIP member your playlists are scanned every {$cfg['app']['update_duration_vip']}."));
-array_push($lang['about']['vip_benefits'],array('icon' => "reload",
+    'description' => "Basic users only get their playlists updated once every {$cfg['app']['update_duration_basic']} but as a VIP member your playlists are scanned every {$cfg['app']['update_duration_vip']}."]);
+array_push($lang['about']['vip_benefits'],['icon' => "reload",
     'title' => "Queue Playlist Refresh",
-    'description' => "We give you the ability to queue your playlists for a refresh. Did you just make a bunch of changes to your links? Now you can queue a refresh to pick it up at the next scan."));
-array_push($lang['about']['vip_benefits'],array('icon' => "billboard",
+    'description' => "We give you the ability to queue your playlists for a refresh. Did you just make a bunch of changes to your links? Now you can queue a refresh to pick it up at the next scan."]);
+array_push($lang['about']['vip_benefits'],['icon' => "billboard",
     'title' => "No Ads",
-    'description' => "We need to pay for the servers somehow and we'll cut out the middle man and hide those pesky ads if you opt to give us a few extra dollars each month instead."));
-array_push($lang['about']['vip_benefits'],array('icon' => "api",
+    'description' => "We need to pay for the servers somehow and we'll cut out the middle man and hide those pesky ads if you opt to give us a few extra dollars each month instead."]);
+array_push($lang['about']['vip_benefits'],['icon' => "api",
     'title' => "API Access",
     'description' => "You can make your own API requests to our backend directly. We'll give you an API Key and you can query the status of your playlists, add and remove playlists, or queue a refresh.",
     'help_icon' => "help-circle",
     'help_title' => "Be nice...&trade;",
-    'help_content' => "Although we give you access to refresh your playlists via API, please, please, PLEASE do not implement an automatic schedule for more than what we already have for you. This is meant to provide one-off functionality when you add/remove content. If we notice a large number of api requests for this functionality we may revoke your api key."));
-array_push($lang['about']['vip_benefits'],array('icon' => "history",
+    'help_content' => "Although we give you access to refresh your playlists via API, please, please, PLEASE do not implement an automatic schedule for more than what we already have for you. This is meant to provide one-off functionality when you add/remove content. If we notice a large number of api requests for this functionality we may revoke your api key."]);
+array_push($lang['about']['vip_benefits'],['icon' => "history",
     'title' => "Master Playlist Update Logs",
     'description' => "We'll give you access to the update logs, letting you see how much was added or removed for the last 20 runs for each Master Playlist.",
     'help_icon' => "alert-decagram",
     'help_title' => "Coming Soon.",
-    'help_content' => "We are tracking all changes/updates, and this information is accessible via the API, but we haven't added to the front-end yet."));
-array_push($lang['about']['vip_benefits'],array('icon' => "webhook",
+    'help_content' => "We are tracking all changes/updates, and this information is accessible via the API, but we haven't added to the front-end yet."]);
+array_push($lang['about']['vip_benefits'],['icon' => "webhook",
     'title' => "Webhooks",
     'description' => "Once we finish updating your playlists, we'll send an update package to the webhook url that you define. Use this to get notifications in slack, discord, IFTTT, or many others.",
     'help_icon' => "alert-decagram",
     'help_title' => "Coming Soon.",
-    'help_content' => "We are working to have this pushed for our next major release."));
-array_push($lang['about']['vip_benefits'],array('icon' => "test-tube",
+    'help_content' => "We are working to have this pushed for our next major release."]);
+array_push($lang['about']['vip_benefits'],['icon' => "test-tube",
     'title' => "Beta Access",
-    'description' => "The newest features and bug fixes are pushed directly to the VIP users first. This means that they will often get more functionality turned on before the regular users."));
-array_push($lang['about']['vip_benefits'],array('icon' => "emoticon-kiss",
+    'description' => "The newest features and bug fixes are pushed directly to the VIP users first. This means that they will often get more functionality turned on before the regular users."]);
+array_push($lang['about']['vip_benefits'],['icon' => "emoticon-kiss",
     'title' => "Our never-ending appreciation",
-    'description' => "This project has been the result of input from many people and that feedback has led to continuous improvement. We could not have done that without you! Thank you very much! With your subscription comes a very heart-filled Thank you!"));
+    'description' => "This project has been the result of input from many people and that feedback has led to continuous improvement. We could not have done that without you! Thank you very much! With your subscription comes a very heart-filled Thank you!"]);
 $lang['about']['vip_legal'] = "VIP Membership on {$lang['site']['title']} does not include any membership with Spotify, either implied or explicitly. As a third-party beneficiary of the WritheM Terms of Service / End User Licence agreement and privacy policy, Spotify is entitled to directly enforce our end user license agreement on our behalf. We reserve the right to change limits and benefits of our VIP membership at any time. We will do everything we can to inform you of these changes before we make them via our Change Log at the <a href='about.php'>FAQ page</a>. If your account on Spotify is closed, you are responsible for also cancelling your VIP subscription on our system. We do not monitor your account status on Spotify. We do not guarantee system availability but will make every effort for 99.9% uptime. All VIP memberships are non-refundable and service interruptions or cancellations beyond our control are not cause for any refunds (either partial or in full). Scheduled maintenance and outages will be posted on our system status page that can be found at <a href=\"https://status.writhem.com/\" target=\"_blank\">https://status.writhem.com/</a>. The scan/update service runs on the plebian server. The website runs on praetor server. Both of these servers are hosted at WM2-AB-CA. Cancelling your Intellimerge VIP membership does not delete or remove any information on either Spotify's servers or the WritheM Project server. To request removal of your account information from the WritheM Project server, please follow the process outlined at in the <a href='about.php'>FAQ page</a>.";
 
-
+/**
+ * editor.php aka Playlist Editor
+ */
 $lang['editor']['new_exceed_quota_basic'] = "You are unable to create or import any additional Master Playlists at this time. It seems you may have exceeded the quota of Master Playlists allocated to your account.";
 $lang['editor']['import_exceed_quota_basic'] = $lang['editor']['new_exceed_quota_basic'];
 $lang['editor']['tooltip_edit_links'] = "This will let you edit the linked playlists to this Master Playlist. Linked playlists are the source of songs in a Master Playlist.";
