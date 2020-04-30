@@ -93,6 +93,8 @@ array_push($lang['about']['q_a']['first_run']['answer']['steps'],['title'=>"Crea
     'body'=>"If you did not import a playlist in step 1, you will be required to tell the system that it's time to create it on Spotify and link it to your newly created playlist. This is not done automatically to give you time to set the links and settings before the updater picks it up for the first time. Click the <div class=\"btn btn-info btn-sm\"><i class=\"mdi mdi-14px mdi-plus-box\"></i></div> Create button to create it in your Spotify Account. Now you just have to wait for the next Scan to pick up your playlist and update it. You can see the last time that your playlists were scanned below your list of master playlists, or on your profile page. In both places, you can click <div class=\"btn btn-primary btn-sm\"><i class=\"mdi mdi-14px mdi-reload\"></i></div> to manually queue it for update as well. If you make a large number of changes to the links, this is a great tool to get your master playlists updated quickly"]);
 $lang['about']['q_a']['vip']['question'] = "What features are included with VIP?";
 $lang['about']['q_a']['vip']['answer'] = "With a VIP Membership, you can have all these extra features listed below. Show your appreciation for the service and pledge a few extra dollars each month to make sure that {$lang['site']['title']} stays online and running smoothly. Thank you very much for your support!";
+$lang['about']['q_a']['feature']['question'] = "I found a bug or I have a feature suggestion. Where do I report it?";
+$lang['about']['q_a']['feature']['answer'] = "Great! We've built the site based largely on feedback from people just like yourself. We would love to have your input. You can head over to our <i class='mdi mdi-github'></i><a href='https://github.com/WritheM/IntelliMerge' target='_blank'>GitHub</a> repository to make your feature requests or bug reports. We have some great resources for contributing to the project there including a preview of some features that might be added to future versions of {$lang['site']['title']}.";
 $lang['about']['q_a']['privacy']['question'] = "What do you do with my data?";
 $lang['about']['q_a']['privacy']['answer']['intro'] = "Your privacy is important to us so we wanted to expand on our <a href=\"//writhem.com/privacy.php\" target=\"_blank\">Privacy Policy</a> and how it pertains specifically to {$lang['site']['title']}";
 $lang['about']['q_a']['privacy']['answer']['points'] = [];
@@ -122,7 +124,7 @@ $lang['about']['q_a']['changelog']['question'] = "Is there a changelog?";
 $lang['about']['q_a']['changelog']['answer'] = "Here is a copy of the updates as they were originally posted on the main page. Each named version is included below. <br />We are currently running version: {$cfg['app']['version']} build: {$cfg['app']['build']}";
 $lang['about']['stats']['question'] = "Show me some cool stats?";
 $lang['about']['stats']['answer']['intro'] = "Alright. We don't have a lot of data but";
-$lang['about']['stats']['answer']['points'] = []; 
+$lang['about']['stats']['answer']['points'] = [];
 array_push($lang['about']['stats']['answer']['points'], "We monitor lists for %total_users% accounts");
 array_push($lang['about']['stats']['answer']['points'], "These users have %total_mpls% master lists that are linked on Spotify");
 array_push($lang['about']['stats']['answer']['points'], "These users have created %total_spls% playlist links");
