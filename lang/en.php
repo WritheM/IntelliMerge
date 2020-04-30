@@ -7,25 +7,64 @@ global $cfg;
 $lang['site']['title'] = "IntelliMerge for Spotify";
 
 $lang['login'] = "Login";
-$lang['changelog']['title'] = "Recent Changes";
-$lang['changelog']['link'] = "For a full list of updates you can check the&nbsp;<a href=\"about.php#changelog\">changelog</a>";
 $lang['changelog']['english_only'] = "We apologize the change-log is only available in English at this time.";
+
 $lang['vip_sign_up'] = "Sign Up Now";
 $lang['vip_manage'] = "Manage Your Subscription";
+$lang['vip_benefits'] = [];
+array_push($lang['vip_benefits'],['icon' => "text-box-multiple-outline",
+    'title' => "Longer Playlists",
+    'description' => "By default we only pull the first {$cfg['app']['playlist_limit_basic']} songs before we stop. If you have VIP we up that limit to {$cfg['app']['playlist_limit_vip']}."]);
+array_push($lang['vip_benefits'],['icon' => "playlist-plus",
+    'title' => "More Playlists",
+    'description' => "Basic users are limited to only creating {$cfg['app']['playlist_count_basic']} Master Playlists that are updated. VIP users can make {$cfg['app']['playlist_count_vip']} Master Playlists."]);
+array_push($lang['vip_benefits'],['icon' => "clock-fast",
+    'title' => "More frequent updates",
+    'description' => "Basic users only get their playlists updated once every {$cfg['app']['update_duration_basic']} but as a VIP member your playlists are scanned every {$cfg['app']['update_duration_vip']}."]);
+array_push($lang['vip_benefits'],['icon' => "reload",
+    'title' => "Queue Playlist Refresh",
+    'description' => "We give you the ability to queue your playlists for a refresh. Did you just make a bunch of changes to your links? Now you can queue a refresh to pick it up at the next scan."]);
+array_push($lang['vip_benefits'],['icon' => "billboard",
+    'title' => "No Ads",
+    'description' => "We need to pay for the servers somehow and we'll cut out the middle man and hide those pesky ads if you opt to give us a few extra dollars each month instead."]);
+array_push($lang['vip_benefits'],['icon' => "api",
+    'title' => "API Access",
+    'description' => "You can make your own API requests to our backend directly. We'll give you an API Key and you can query the status of your playlists, add and remove playlists, or queue a refresh.",
+    'help_icon' => "help-circle",
+    'help_title' => "Be nice...&trade;",
+    'help_content' => "Although we give you access to refresh your playlists via API, please, please, PLEASE do not implement an automatic schedule for more than what we already have for you. This is meant to provide one-off functionality when you add/remove content. If we notice a large number of api requests for this functionality we may revoke your api key."]);
+array_push($lang['vip_benefits'],['icon' => "history",
+    'title' => "Master Playlist Update Logs",
+    'description' => "We'll give you access to the update logs, letting you see how much was added or removed for the last 20 runs for each Master Playlist.",
+    'help_icon' => "alert-decagram",
+    'help_title' => "Coming Soon.",
+    'help_content' => "We are tracking all changes/updates, and this information is accessible via the API, but we haven't added to the front-end yet."]);
+array_push($lang['vip_benefits'],['icon' => "webhook",
+    'title' => "Webhooks",
+    'description' => "Once we finish updating your playlists, we'll send an update package to the webhook url that you define. Use this to get notifications in slack, discord, IFTTT, or many others.",
+    'help_icon' => "alert-decagram",
+    'help_title' => "Coming Soon.",
+    'help_content' => "We are working to have this pushed for our next major release."]);
+array_push($lang['vip_benefits'],['icon' => "test-tube",
+    'title' => "Beta Access",
+    'description' => "The newest features and bug fixes are pushed directly to the VIP users first. This means that they will often get more functionality turned on before the regular users."]);
+array_push($lang['vip_benefits'],['icon' => "emoticon-kiss",
+    'title' => "Our never-ending appreciation",
+    'description' => "This project has been the result of input from many people and that feedback has led to continuous improvement. We could not have done that without you! Thank you very much! With your subscription comes a very heart-filled Thank you!"]);
+$lang['vip_legal'] = "VIP Membership on {$lang['site']['title']} does not include any membership with Spotify, either implied or explicitly. As a third-party beneficiary of the WritheM Terms of Service / End User Licence agreement and privacy policy, Spotify is entitled to directly enforce our end user license agreement on our behalf. We reserve the right to change limits and benefits of our VIP membership at any time. We will do everything we can to inform you of these changes before we make them via our Change Log at the <a href='about.php'>FAQ page</a>. If your account on Spotify is closed, you are responsible for also cancelling your VIP subscription on our system. We do not monitor your account status on Spotify. We do not guarantee system availability but will make every effort for 99.9% uptime. All VIP memberships are non-refundable and service interruptions or cancellations beyond our control are not cause for any refunds (either partial or in full). Scheduled maintenance and outages will be posted on our system status page that can be found at <a href=\"https://status.writhem.com/\" target=\"_blank\">https://status.writhem.com/</a>. The scan/update service runs on the plebian server. The website runs on praetor server. Both of these servers are hosted at WM2-AB-CA. Cancelling your Intellimerge VIP membership does not delete or remove any information on either Spotify's servers or the WritheM Project server. To request removal of your account information from the WritheM Project server, please follow the process outlined at in the <a href='about.php'>FAQ page</a>.";
+
 
 /**
  * index.php aka Home
  **/
-$lang['home']['description'] = "With this helpful app, you'll be able to make Master Playlists that are smart 
-    enough to update themselves based on the contents of other playlists. Have you ever wanted to include a Spotify 
-    curated playlist that is frequently updated into your own custom playlist without having to keep track of what's new?
-     Now you can. With {$lang['site']['title']} you can create playlist links that are frequently monitored for changes 
-     and propagated to your Master Playlist. Now you can merge Spotify playlists from any user like a pro.";
+$lang['home']['description'] = "With this helpful app, you'll be able to make Master Playlists that are smart enough to update themselves based on the contents of other playlists. Have you ever wanted to include a Spotify curated playlist that is frequently updated into your own custom playlist without having to keep track of what's new? Now you can. With {$lang['site']['title']} you can create playlist links that are frequently monitored for changes and propagated to your Master Playlist. Now you can merge Spotify playlists from any user like a pro.";
 $lang['home']['maintenace_mode']['title'] = "NOTICE";
 $lang['home']['maintenace_mode']['body'] = "Maintenance Mode is currently Enabled. We will be back shortly! Check <a target=\"_blank\" href=\"https://status.writhem.com/\">https://status.writhem.com/</a> for detailed information";
 $lang['home']['welcome_back'] = "Welcome back";
 $lang['home']['edit_button'] = "Edit Master Playlists";
 $lang['home']['not_logged_in'] = "You are not currently logged in. Please login to create a new Master Playlist or edit your existing Master Playlists";
+$lang['home']['changelog']['title'] = "Recent Changes";
+$lang['home']['changelog']['link'] = "For a full list of updates you can check the&nbsp;<a href=\"about.php#changelog\">changelog</a>";
 
 /**
  * about.php aka About/FAQ
@@ -47,53 +86,42 @@ array_push($lang['about']['q_a']['first_run']['answer']['steps'],['title'=>"Edit
 array_push($lang['about']['q_a']['first_run']['answer']['steps'],['title'=>"Creating your Master Playlist on Spotify",
     'body'=>"If you did not import a playlist in step 1, you will be required to tell the system that it's time to create it on Spotify and link it to your newly created playlist. This is not done automatically to give you time to set the links and settings before the updater picks it up for the first time. Click the <div class=\"btn btn-info btn-sm\"><i class=\"mdi mdi-14px mdi-plus-box\"></i></div> Create button to create it in your Spotify Account. Now you just have to wait for the next Scan to pick up your playlist and update it. You can see the last time that your playlists were scanned below your list of master playlists, or on your profile page. In both places, you can click <div class=\"btn btn-primary btn-sm\"><i class=\"mdi mdi-14px mdi-reload\"></i></div> to manually queue it for update as well. If you make a large number of changes to the links, this is a great tool to get your master playlists updated quickly"]);
 $lang['about']['q_a']['vip']['question'] = "What features are included with VIP?";
-$lang['about']['q_a']['vip']['answer'] = "With a VIP Membership, you can have all these extra features listed below. Show your
-                        appreciation for the service and pledge a few extra dollars each month to make sure that
-                        {$lang['site']['title']} stays online and running smoothly. Thank you very
-                        much for your support!";
+$lang['about']['q_a']['vip']['answer'] = "With a VIP Membership, you can have all these extra features listed below. Show your appreciation for the service and pledge a few extra dollars each month to make sure that {$lang['site']['title']} stays online and running smoothly. Thank you very much for your support!";
+$lang['about']['q_a']['privacy']['question'] = "What do you do with my data?";
+$lang['about']['q_a']['privacy']['answer']['intro'] = "Your privacy is important to us so we wanted to expand on our <a href=\"//writhem.com/privacy.php\" target=\"_blank\">Privacy Policy</a> and how it pertains specifically to {$lang['site']['title']}";
+$lang['about']['q_a']['privacy']['answer']['points'] = [];
+array_push($lang['about']['q_a']['privacy']['answer']['points'], "We will never sell your information either as an anonymized collection or as distinct. Unless required to share any information by law enforcement agencies or agreements with our third party vendors (including but not limited to Spotify), we will never willingly give information about your usage of this service to anyone. You can always request an export of the data that we capture about you as well. Please create a support ticket for this and allow 7-14 days for us to process requests of this nature");
+array_push($lang['about']['q_a']['privacy']['answer']['points'],"We only capture information from your account or usage that we absolutely require to perform the services we promise to provide. In addition to this, we only request access to the elements of your account that we absolutely require to perform the services we promise to you. This means things like age, name, or any security information about your Spotify profile are never stored in our database. We do log IP addresses and information such as browser used, but never store this in any way that can be 'linked' to a specific user. This technical information is captured to monitor security and performance as well as develop the service further (If the majority of our users switch to Internet Explorer 6.0 then we may consider re-writing our website to support that). Most recently this is what has led us to completely rewrite the website with mobile first design. We found that >65% of our users were mobile users");
+array_push($lang['about']['q_a']['privacy']['answer']['points'],"If you're using our API we do log detailed information about its usage. This includes when, who, and what is requested. We only log uses of our API if directly using an APIKey and not when a user is logged in. Only VIPs are given the option to generate an APIKey. Usage of our API constitutes agreement with our detailed logging");
+array_push($lang['about']['q_a']['privacy']['answer']['points'],"We also log detailed information about webhooks. This includes failure rates and full history of the set urls and their responses. We log this to deter and control abuse of the feature. As this is a VIP only feature that users must opt-in to use, if you are uncomfortable with our logging of this, do not use it. Usage of the Webhook features, constitutes agreement with our logging of your usage of this feature");
+$lang['about']['q_a']['exclude']['question'] = "What does it mean to Include/Exclude playlists? Should I just Exclude everything I'm not Including?";
+$lang['about']['q_a']['exclude']['answer'] = "In short, no. Songs that are on an Excluded list will never be added to your Master Playlist. It's a sort of blacklist. Let's think of an example. I want to create a Master Playlist that includes my country's Top 50 tracks on Spotify, but it occasionally has an artist that I can't stand. If I find a playlist that includes all of the songs I would never want to include (Most artists have a \"This is __\" created by Spotify that would be perfect for this), then I can set that as excluded from my Master Playlist. My Master Playlist will then only contain the songs that are in the Included Top 50 but not on the Excluded 'This is __' playlist. Alternatively, you can create your own Excluded playlist on Spotify and then exclude that from your Master Playlist. You can Include or Exclude as many playlists as you want, but know that the system will only pick up the first ~{$cfg['app']['playlist_limit_basic']} songs for Basic users, or ~{$cfg['app']['playlist_limit_vip']}songs for VIP Users.";
+$lang['about']['q_a']['limits']['question'] = "Are there any limits to the playlists?";
+$lang['about']['q_a']['limits']['answer'] = "We currently limit <strong>the number of songs</strong> that will be added to a master list, as well as <strong>the number of master lists</strong> per account. To keep the number of hits to the Spotify API reasonable, we only add the first ~{$cfg['app']['playlist_limit_basic']} songs that are found on a scan. Because of the way we hit the spotify api though, they give us chunks of 100 songs back and we only stop requesting additional songs after we hit {$cfg['app']['playlist_limit_basic']} so occasionally they might give us a few more than that number. We do increase this basic limit to {$cfg['app']['playlist_limit_vip']} songs for VIP Users. Additionally, users will only be able to make {$cfg['app']['playlist_count_basic']} Master Playlists per account. VIP Users are allowed to make {$cfg['app']['playlist_count_vip']} Master Playlists.";
+$lang['about']['q_a']['coverart']['question'] = "What are those numbers in the playlist cover art?";
+$lang['about']['q_a']['coverart']['answer'] = "Those numbers in the last update section of the graphic are what the system did to your track count last time it updated your master playlist. It will show the last date that it updated (according to UTC) and how many songs were added or removed. In this example there were 20 songs added and 3 removed. Now you know when the last time the master list was updated and by how much :)";
+$lang['about']['q_a']['legal']['question'] = "Are there certain legal things I should be aware of?";
+$lang['about']['q_a']['legal']['answer']['intro'] = "Thanks for asking such a non-scripted question! As a part of using this service there are certain conditions that you agree to as outlined in the privacy policy and terms of use documents linked in the footer of this page. There are some additional terms as outlined here. By signing in, and authorizing this app on your Spotify account, you hereby provide your agreement to the following";
+$lang['about']['q_a']['legal']['answer']['points'] = [];
+array_push($lang['about']['q_a']['legal']['answer']['points'], "We do not make any warranties or representations on behalf of Spotify and we expressly disclaim all implied warranties with respect to the Spotify Platform, Spotify Service and Spotify Content, including the implied warranties of merchantability, fitness for a particular purpose and non-infringement");
+array_push($lang['about']['q_a']['legal']['answer']['points'], "You agree that you are prohibited from modifying or creating derivative works based on the Spotify Platform, Spotify Service or Spotify Content");
+array_push($lang['about']['q_a']['legal']['answer']['points'], "You are prohibited from decompiling, reverse-engineering, disassembling, and otherwise reducing the Spotify Platform, Spotify Service, and Spotify Content to source code or other human-perceivable form, to the full extent allowed by law");
+array_push($lang['about']['q_a']['legal']['answer']['points'], "WritheM Web Solutions is responsible for this app and we hereby release any liability on the part of third parties (e.g., Spotify); In short, Spotify is not responsible for the content found on the WritheM Servers");
+array_push($lang['about']['q_a']['legal']['answer']['points'], "Finally, Spotify is a third party beneficiary of the WritheM end user license agreement and privacy policy and is entitled to directly enforce our end user license agreement on our behalf");
+$lang['about']['q_a']['purge']['question'] = "This service was great but I dont need it anymore. How do I delete my information?";
+$lang['about']['q_a']['purge']['answer'] = "As part of our agreement to access the Spotify Servers we agree to some conditions. One of which is to delete all information on our server if you revoke access to the app. To revoke this app from accessing your account going forward you can go to your Spotify Account Settings -> Click Apps and then click the Revoke Access button next to {$lang['site']['title']}. A direct link to this page is <a href=\"https://www.spotify.com/ca-en/account/apps/\" target=\"_blank\">here</a>. Once we detect that we no longer have access to your account we put your account on hiatus until you sign back in via the web browser and re-authenticate the app. If your account stays in a hiatus status for 60 days, we remove all records of your playlists and the associations you made on the {$lang['site']['title']} app. If you wish to manually reduce this wait period to zero, you can email <a href=\"mailto:admin@writhem.com\">our support</a> or use our <a href=\"http://writhem.com/contact.php\" target=\"_target\">contact form</a> and ask for manual account deletion. You will also need to provide us with your Support ID which can be found on your <a href=\"profile.php\">profile page</a> to verify the ownership of your account";
+$lang['about']['q_a']['donations']['question'] = "I'm a big fan of this service; can I help out in anyway?";
+$lang['about']['q_a']['donations']['answer'] = "The scale of this project has certainly grown but it is still endorsed and supported by <a href=\"http://writhem.com/\" target=\"_blank\">WritheM Web Solutions</a>. We provide a free tier as service to our users, but any donations you would like to make would be appreciated! You can send us <a href=\"https://paypal.me/writhem\" target=\"_blank\">pennies via paypal</a>, or click this button. <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=58PCHTDQS35SC\" class=\"external-link\" rel=\"nofollow\"><img class=\"confluence-embedded-image confluence-external-resource\" width=\"100\" src=\"https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif\" data-image-src=\"https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif\"></a> We also have a longer term commitment that allows people to support the service. Check out the VIP Membership from your <a href=\"profile.php\">profile</a> page for more details.<br/>Keep an eye out in the future for opportunities to earn your VIP membership for free by developing translations for the system too! We are planning on supporting many different languages in the future and will need help translating the system. Soon&trade;.";
+$lang['about']['q_a']['changelog']['question'] = "Is there a changelog?";
+$lang['about']['q_a']['changelog']['answer'] = "Here is a copy of the updates as they were originally posted on the main page. Each named version is included below. <br />We are currently running version: {$cfg['app']['version']} build: {$cfg['app']['build']}";
+$lang['about']['stats']['question'] = "Show me some cool stats?";
+$lang['about']['stats']['answer']['intro'] = "Alright. We don't have a lot of data but";
+$lang['about']['stats']['answer']['points'] = [];
+array_push($lang['about']['stats']['answer']['points'], "We monitor lists for {$users} accounts");
+array_push($lang['about']['stats']['answer']['points'], "These users have {$mpls} master lists that are linked on Spotify");
+array_push($lang['about']['stats']['answer']['points'], "These users have created {$spls} playlist links");
+$lang['about']['stats']['answer']['outro'] = "And some specific technical stats on our last run";
 
-
-$lang['about']['vip_benefits'] = [];
-array_push($lang['about']['vip_benefits'],['icon' => "text-box-multiple-outline",
-    'title' => "Longer Playlists",
-    'description' => "By default we only pull the first {$cfg['app']['playlist_limit_basic']} songs before we stop. If you have VIP we up that limit to {$cfg['app']['playlist_limit_vip']}."]);
-array_push($lang['about']['vip_benefits'],['icon' => "playlist-plus",
-    'title' => "More Playlists",
-    'description' => "Basic users are limited to only creating {$cfg['app']['playlist_count_basic']} Master Playlists that are updated. VIP users can make {$cfg['app']['playlist_count_vip']} Master Playlists."]);
-array_push($lang['about']['vip_benefits'],['icon' => "clock-fast",
-    'title' => "More frequent updates",
-    'description' => "Basic users only get their playlists updated once every {$cfg['app']['update_duration_basic']} but as a VIP member your playlists are scanned every {$cfg['app']['update_duration_vip']}."]);
-array_push($lang['about']['vip_benefits'],['icon' => "reload",
-    'title' => "Queue Playlist Refresh",
-    'description' => "We give you the ability to queue your playlists for a refresh. Did you just make a bunch of changes to your links? Now you can queue a refresh to pick it up at the next scan."]);
-array_push($lang['about']['vip_benefits'],['icon' => "billboard",
-    'title' => "No Ads",
-    'description' => "We need to pay for the servers somehow and we'll cut out the middle man and hide those pesky ads if you opt to give us a few extra dollars each month instead."]);
-array_push($lang['about']['vip_benefits'],['icon' => "api",
-    'title' => "API Access",
-    'description' => "You can make your own API requests to our backend directly. We'll give you an API Key and you can query the status of your playlists, add and remove playlists, or queue a refresh.",
-    'help_icon' => "help-circle",
-    'help_title' => "Be nice...&trade;",
-    'help_content' => "Although we give you access to refresh your playlists via API, please, please, PLEASE do not implement an automatic schedule for more than what we already have for you. This is meant to provide one-off functionality when you add/remove content. If we notice a large number of api requests for this functionality we may revoke your api key."]);
-array_push($lang['about']['vip_benefits'],['icon' => "history",
-    'title' => "Master Playlist Update Logs",
-    'description' => "We'll give you access to the update logs, letting you see how much was added or removed for the last 20 runs for each Master Playlist.",
-    'help_icon' => "alert-decagram",
-    'help_title' => "Coming Soon.",
-    'help_content' => "We are tracking all changes/updates, and this information is accessible via the API, but we haven't added to the front-end yet."]);
-array_push($lang['about']['vip_benefits'],['icon' => "webhook",
-    'title' => "Webhooks",
-    'description' => "Once we finish updating your playlists, we'll send an update package to the webhook url that you define. Use this to get notifications in slack, discord, IFTTT, or many others.",
-    'help_icon' => "alert-decagram",
-    'help_title' => "Coming Soon.",
-    'help_content' => "We are working to have this pushed for our next major release."]);
-array_push($lang['about']['vip_benefits'],['icon' => "test-tube",
-    'title' => "Beta Access",
-    'description' => "The newest features and bug fixes are pushed directly to the VIP users first. This means that they will often get more functionality turned on before the regular users."]);
-array_push($lang['about']['vip_benefits'],['icon' => "emoticon-kiss",
-    'title' => "Our never-ending appreciation",
-    'description' => "This project has been the result of input from many people and that feedback has led to continuous improvement. We could not have done that without you! Thank you very much! With your subscription comes a very heart-filled Thank you!"]);
-$lang['about']['vip_legal'] = "VIP Membership on {$lang['site']['title']} does not include any membership with Spotify, either implied or explicitly. As a third-party beneficiary of the WritheM Terms of Service / End User Licence agreement and privacy policy, Spotify is entitled to directly enforce our end user license agreement on our behalf. We reserve the right to change limits and benefits of our VIP membership at any time. We will do everything we can to inform you of these changes before we make them via our Change Log at the <a href='about.php'>FAQ page</a>. If your account on Spotify is closed, you are responsible for also cancelling your VIP subscription on our system. We do not monitor your account status on Spotify. We do not guarantee system availability but will make every effort for 99.9% uptime. All VIP memberships are non-refundable and service interruptions or cancellations beyond our control are not cause for any refunds (either partial or in full). Scheduled maintenance and outages will be posted on our system status page that can be found at <a href=\"https://status.writhem.com/\" target=\"_blank\">https://status.writhem.com/</a>. The scan/update service runs on the plebian server. The website runs on praetor server. Both of these servers are hosted at WM2-AB-CA. Cancelling your Intellimerge VIP membership does not delete or remove any information on either Spotify's servers or the WritheM Project server. To request removal of your account information from the WritheM Project server, please follow the process outlined at in the <a href='about.php'>FAQ page</a>.";
 
 /**
  * editor.php aka Playlist Editor

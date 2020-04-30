@@ -5,11 +5,10 @@
  */
 $lang['site']['title'] = "IntelliMerge f&uuml;r Spotify";
 
-$lang['changelog']['title'] = "Letzte &Auml;nderungen";
-
 /**
  * index.php aka Home
  **/
+$lang['home']['changelog']['title'] = "Letzte &Auml;nderungen";
 
 /**
  * about.php aka About/FAQ
