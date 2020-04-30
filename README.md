@@ -4,6 +4,7 @@ You have found the GitHub repository for **IntelliMerge for Spotify**. This repo
 
 - Community contributions for localisations
 - Issue Tracker and Feature Requests
+- Keep track of changes to the public API
 
 If you would like to help us with translating the platform into a language that we do not currently support, then feel free to fork this repository and then creating a pull request.
 

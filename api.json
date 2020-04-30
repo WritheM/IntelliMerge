@@ -1,0 +1,1096 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Intellimerge API",
+    "description": "This allows Intellimerge users with an apikey to interact with our backend. You can find out more about Intellimerge on our [API Docs page](https://writhem.net/intellimerge/doc.php)",
+    "termsOfService": "https://writhem.com/terms-of-service.php",
+    "contact": {
+      "email": "media@writhem.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "version": "2.0"
+  },
+  "servers": [
+    {
+      "url": "https://writhem.net/intellimerge/api/",
+      "description": "Production Server"
+    },
+    {
+      "url": "https://writhem.net/intellimerge-dev/api/",
+      "description": "Development Server"
+    }
+  ],
+  "paths": {
+    "/getMasterPlaylists": {
+      "get": {
+        "tags": [
+          "MasterPlaylists"
+        ],
+        "description": "returns a list of the MasterPlaylists that have been created within this app.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/apiKey"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "An array of MasterPlaylists",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MasterPlaylist"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No MasterPlaylists have been created yet",
+            "content": {
+              "application/json": {
+                "schema": {},
+                "example": "[]"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getFollowedPlaylists": {
+      "get": {
+        "tags": [
+          "SpotifyActions"
+        ],
+        "description": "returns a list of all playlists you follow on Spotify.",
+        "externalDocs": {
+          "url": "https://developer.spotify.com/documentation/web-api/reference/playlists/get-a-list-of-current-users-playlists/"
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/apiKey"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "An array of Playlists",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FollowedPlaylist"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No Playlists are being followed",
+            "content": {
+              "application/json": {
+                "schema": {},
+                "example": "[]"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getPlaylistsLinks/{mpl}": {
+      "get": {
+        "tags": [
+          "PlaylistLinks"
+        ],
+        "description": "returns a list of all playlists you follow on Spotify.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/apiKey"
+          },
+          {
+            "name": "mpl",
+            "in": "path",
+            "description": "The ID of the Master Playlist to search for",
+            "required": true,
+            "example": 2470
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "An array of Playlists that are linked to a specified Master Playlist",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PlaylistLink"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No Playlists are being followed",
+            "content": {
+              "application/json": {
+                "schema": {},
+                "example": "[]"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getPlaylistDetails/{spotifyid}": {
+      "get": {
+        "tags": [
+          "SpotifyActions"
+        ],
+        "description": "returns the pertinant details of a specified Spotify Playlist. NOTE: Only the following fields are returned: name, id, type, owner, external_urls, collaborative, images.",
+        "externalDocs": {
+          "url": "https://developer.spotify.com/documentation/web-api/reference/playlists/get-playlist/"
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/apiKey"
+          },
+          {
+            "name": "spotifyid",
+            "in": "path",
+            "description": "The Spotify ID of the Playlist for which to get the details",
+            "required": true,
+            "example": "50lZXeoa91z4BO70r42Gg4"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The Playlist",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FollowedPlaylist"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No Playlist info found"
+          }
+        }
+      }
+    },
+    "/createMasterPlaylist": {
+      "post": {
+        "tags": [
+          "MasterPlaylists"
+        ],
+        "description": "Creates a master playlist with the specified name",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/apiKey"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "properties": {
+                  "title": {
+                    "description": "The desired inital name of the Master Playlist",
+                    "type": "string",
+                    "example": "My Awesome Master Playlist"
+                  }
+                },
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successfully created the Master Playlist",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MasterPlaylist"
+                }
+              }
+            }
+          },
+          "304": {
+            "description": "Title is not unique, no changes made."
+          }
+        }
+      }
+    },
+    "/createNewAPIKey": {
+      "post": {
+        "tags": [
+          "OtherActions"
+        ],
+        "description": "VIP Only: Creates a new API Key for the account, will also remove/disable all other api keys for this account.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/apiKey"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Successfully created the apiKey",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "new_key": {
+                      "type": "string",
+                      "example": "6c99cd8918f3c762a12c05de1272d13a"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/importMasterPlaylist": {
+      "post": {
+        "tags": [
+          "MasterPlaylists"
+        ],
+        "description": "Imports a Spotify Playlist and uses it as a new Master Playlist",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/apiKey"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "properties": {
+                  "id": {
+                    "description": "The Spotify ID of the playlist to start using as a Master Playlist",
+                    "type": "string",
+                    "example": "50lZXeoa91z4BO70r42Gg4"
+                  }
+                },
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successfully imported the Master Playlist",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MasterPlaylist"
+                }
+              }
+            }
+          },
+          "304": {
+            "description": "Playlist already exists in your account."
+          },
+          "400": {
+            "description": "Playlist is invalid for import. Details to follow."
+          },
+          "403": {
+            "description": "Playlist does not belong to your Spotify account."
+          }
+        }
+      }
+    },
+    "/createPlaylistLink": {
+      "post": {
+        "tags": [
+          "PlaylistLinks"
+        ],
+        "description": "Creates a link to a master playlist",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/apiKey"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "properties": {
+                  "mpl": {
+                    "description": "The ID of the Master Playlist to create a link to. (The Master)",
+                    "type": "integer",
+                    "example": 1337
+                  },
+                  "spotifyid": {
+                    "description": "The Spotify ID of the Playlist that will be linked. (The Slave)",
+                    "type": "string",
+                    "example": "50lZXeoa91z4BO70r42Gg4"
+                  },
+                  "mode": {
+                    "description": "Whether we include or exclude the linked playlist. 0: exclude, 1: include (defualt)",
+                    "type": "integer",
+                    "example": 1
+                  }
+                },
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Successfully created the link"
+          },
+          "304": {
+            "$ref": "#/components/responses/304"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          }
+        }
+      }
+    },
+    "/queueRefresh": {
+      "put": {
+        "tags": [
+          "OtherActions"
+        ],
+        "description": "Clears the last scan date of your Master Playlists to force an update at next scan. VIP Only.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/apiKey"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successfully queued for update"
+          },
+          "304": {
+            "description": "Was already queued. No changes made."
+          }
+        }
+      }
+    },
+    "/setMasterPlaylistSettings/{mpl}": {
+      "put": {
+        "tags": [
+          "MasterPlaylists"
+        ],
+        "description": "Update the settings for a single MasterPlaylist.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/apiKey"
+          },
+          {
+            "name": "mpl",
+            "in": "path",
+            "description": "The id of the Master Playlist to delete",
+            "required": true,
+            "example": 1337
+          }
+        ],
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "title": {
+                    "description": "An updated title for the Playlist on this system only. Will not be changed on Spotify.",
+                    "type": "string",
+                    "example": "My Awesome Master Playlist"
+                  },
+                  "enabled": {
+                    "description": "Whether to enable or disable the update of the Master Playlist. Note: Disable is a VIP Only feature.",
+                    "type": "tinyint",
+                    "enum": [
+                      "Disabled",
+                      "Enabled"
+                    ],
+                    "example": 0
+                  },
+                  "coverart": {
+                    "description": "If the system should update the cover art of the master playlist when it updates the contents of it.",
+                    "type": "tinyint",
+                    "enum": [
+                      "Disabled",
+                      "Enabled"
+                    ],
+                    "example": 0
+                  },
+                  "remove_old": {
+                    "description": "If the system should Remove old songs no longer found on the linked playlists marked as include. NOTE: This will cause an ever-growing playlist that will no longer be incrimented once it hits the maximum playlist length.",
+                    "type": "tinyint",
+                    "enum": [
+                      "Disabled",
+                      "Enabled"
+                    ],
+                    "example": 1
+                  }
+                },
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Successfully updated settings"
+          },
+          "304": {
+            "description": "Was already changed. No changes made."
+          },
+          "402": {
+            "description": "VIP Only feature attempted but account is Basic."
+          },
+          "403": {
+            "description": "Change would result in non-unique elements in your account or would exceed quota of account."
+          },
+          "404": {
+            "description": "Could not find that Master Playlist ID on your account."
+          }
+        }
+      }
+    },
+    "/setProfileSettings": {
+      "put": {
+        "tags": [
+          "OtherActions"
+        ],
+        "description": "Update the system wide settings.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/apiKey"
+          }
+        ],
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "help_enabled": {
+                    "description": "Whether to enable or disable Tooltips and Extended Labels",
+                    "type": "tinyint",
+                    "enum": [
+                      "Disabled",
+                      "Enabled"
+                    ],
+                    "example": 1
+                  },
+                  "toast_enabled": {
+                    "description": "Whether to enable or disable Toast messages",
+                    "type": "tinyint",
+                    "enum": [
+                      "Disabled",
+                      "Enabled"
+                    ],
+                    "example": 1
+                  },
+                  "purge": {
+                    "description": "if 1 is passed, then it will close your account. All settings and playlist information with your account will be removed at next midnight UTC. This will not affect anything on your Spotify Account. No other settings will be set if this setting is set.",
+                    "type": "tinyint",
+                    "enum": [
+                      "do-not-purge",
+                      "purge"
+                    ],
+                    "example": 0
+                  }
+                },
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Successfully updated settings"
+          },
+          "304": {
+            "description": "Was already changed. No changes made."
+          }
+        }
+      }
+    },
+    "/followPlaylist/{spotifyid}": {
+      "put": {
+        "tags": [
+          "SpotifyActions"
+        ],
+        "description": "Follows a playlist on Spotify.",
+        "externalDocs": {
+          "url": "https://developer.spotify.com/documentation/web-api/reference/follow/follow-playlist/"
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/apiKey"
+          },
+          {
+            "name": "spotifyid",
+            "in": "path",
+            "description": "The Spotify ID of the Playlist to follow",
+            "required": true,
+            "example": "50lZXeoa91z4BO70r42Gg4"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successfully followed the playlist."
+          },
+          "404": {
+            "description": "That Playlist ID is invalid to follow."
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "SpotifyActions"
+        ],
+        "description": "UnFollows a playlist on Spotify.",
+        "externalDocs": {
+          "url": "https://developer.spotify.com/documentation/web-api/reference/follow/unfollow-playlist/"
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/apiKey"
+          },
+          {
+            "name": "spotifyid",
+            "in": "path",
+            "description": "The Spotify ID of the Playlist to unfollow",
+            "required": true,
+            "example": "50lZXeoa91z4BO70r42Gg4"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successfully unfollowed the playlist."
+          },
+          "404": {
+            "description": "That Playlist ID is invalid to follow."
+          }
+        }
+      }
+    },
+    "/linkMasterPlaylist/{mpl}": {
+      "put": {
+        "tags": [
+          "SpotifyActions",
+          "MasterPlaylists"
+        ],
+        "description": "Will create a Playlist on Spotify if the Master Playlist is Unlinked.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/apiKey"
+          },
+          {
+            "name": "mpl",
+            "in": "path",
+            "description": "The Master Playlist ID to Create on Spotify",
+            "required": true,
+            "example": 1337
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Successfully created the playlist."
+          },
+          "304": {
+            "description": "That Master Playlist is already linked."
+          },
+          "404": {
+            "description": "That Master Playlist ID is invalid."
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "MasterPlaylists"
+        ],
+        "description": "Deletes link between a master playlist and a Spotify playlist with the specified Master Playlist ID",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/apiKey"
+          },
+          {
+            "name": "mpl",
+            "in": "path",
+            "description": "The Master Playlist ID to Unlink from Spotify",
+            "required": true,
+            "example": 1337
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successfully deleted the link"
+          },
+          "304": {
+            "description": "Is not linked to a Spotify Plylist"
+          },
+          "404": {
+            "description": "Provided Master Playlist ID was not found in your account."
+          }
+        }
+      }
+    },
+    "/deleteMasterPlaylist/{mpl}": {
+      "delete": {
+        "tags": [
+          "MasterPlaylists"
+        ],
+        "description": "Deletes a master playlist with the specified mpl. Caution: This will also remove all webhooks and links associated with the Master Playlist as well.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/apiKey"
+          },
+          {
+            "name": "mpl",
+            "in": "path",
+            "description": "The id of the Master Playlist to delete",
+            "required": true,
+            "example": 1337
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successfully deleted the Master Playlist"
+          },
+          "404": {
+            "description": "Provided Playlist id does not exist in your account."
+          }
+        }
+      }
+    },
+    "/deletePlaylistLink": {
+      "delete": {
+        "tags": [
+          "PlaylistLinks"
+        ],
+        "description": "Deletes link between a master playlist with the specified mpl and a Spotify playlist with the specified spotify_id",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/apiKey"
+          },
+          {
+            "name": "mpl",
+            "in": "query",
+            "description": "The id of the Master Playlist",
+            "required": true,
+            "example": 1337
+          },
+          {
+            "name": "spotifyid",
+            "in": "query",
+            "description": "The Spotify ID of the Linked Playlist",
+            "required": true,
+            "example": "50lZXeoa91z4BO70r42Gg4"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successfully deleted the link"
+          },
+          "404": {
+            "description": "Provided Playlist id + Spotify ID is not linked in your account."
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "APIError": {
+        "properties": {
+          "code": {
+            "type": "integer",
+            "format": "int32",
+            "example": 400
+          },
+          "title": {
+            "title": "Path not recognized",
+            "type": "string"
+          },
+          "details": {
+            "type": "string",
+            "example": "The requested function was unrecognized or malformed. Please refer to the API Documentation at /intellimerge/doc.php"
+          }
+        },
+        "type": "object"
+      },
+      "MasterPlaylist": {
+        "description": "A Master Playlist",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 989
+          },
+          "enabled": {
+            "type": "boolean",
+            "example": true
+          },
+          "spotify_id": {
+            "description": "if linked to a spotify playlist this will be the spotify assigned id. null if not linked yet.",
+            "type": "?string",
+            "example": "50lZXeoa91z4BO70r42Gg4"
+          },
+          "username": {
+            "type": "string",
+            "example": "gl2o829k023l9p1yjywglio61"
+          },
+          "title": {
+            "description": "The name given to the MasterPlaylist when originally creating it. Does not include any changes that are made on Spotify. We do not keep this updated. It's just for reference.",
+            "type": "string",
+            "example": "WritheM Radio"
+          },
+          "options": {
+            "properties": {
+              "coverart": {
+                "description": "Should we update the graphic on Spotify when we update the contents of the Master Playlist?",
+                "type": "boolean",
+                "example": false
+              },
+              "remove_old": {
+                "description": "Should we remove songs from the Master Playlist that are no longer found in the linked playlists?",
+                "type": "boolean",
+                "example": true
+              }
+            },
+            "type": "object"
+          },
+          "history": {
+            "description": "An array of history items. max 21 items will be loaded. 0 indexed. 0 will always be last updated.",
+            "type": "array",
+            "items": {
+              "title": "MasterPlaylistHistory",
+              "properties": {
+                "id": {
+                  "description": "base62 id of history item. 0 will always be first and contain the last_update of the last time the Updater scanned this playlist for changes.",
+                  "type": "string",
+                  "example": "DXC1"
+                },
+                "date": {
+                  "description": "timestamp of the history item",
+                  "type": "integer",
+                  "example": 1588014291
+                },
+                "who": {
+                  "description": "who made the change.",
+                  "type": "string",
+                  "example": "System"
+                },
+                "entry": {
+                  "description": "what was changed about the master playlist.",
+                  "type": "string",
+                  "example": "Enabled the Master Playlist"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "webhooks": {
+            "type": "array",
+            "items": {
+              "title": "MasterPlaylistWebhook",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "example": 31
+                },
+                "url": {
+                  "type": "string",
+                  "example": "https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "errors": {
+            "type": "integer",
+            "example": 0
+          }
+        },
+        "type": "object"
+      },
+      "Session": {
+        "properties": {
+          "accessToken": {
+            "type": "string"
+          },
+          "refreshToken": {
+            "type": "string"
+          },
+          "redirectUri": {
+            "type": "string"
+          },
+          "refreshDate": {
+            "type": "DateTime"
+          }
+        },
+        "type": "object"
+      },
+      "User": {
+        "properties": {
+          "spotifyUser": {
+            "$ref": "#/components/schemas/SpotifyWebAPIUser"
+          },
+          "session": {
+            "$ref": "#/components/schemas/Session"
+          },
+          "lastAttempt": {
+            "type": "DateTime"
+          },
+          "apiKey": {
+            "type": "string"
+          },
+          "apiRevoked": {
+            "type": "bool"
+          },
+          "level": {
+            "$ref": "#/components/schemas/UserLevel"
+          },
+          "help": {
+            "type": "bool"
+          },
+          "toast": {
+            "type": "bool"
+          }
+        },
+        "type": "object"
+      },
+      "SpotifyWebAPIUser": {
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "display_name": {
+            "type": "string"
+          },
+          "external_urls": {
+            "properties": {
+              "spotify": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "followers": {
+            "properties": {
+              "href": {
+                "type": "string"
+              },
+              "total": {
+                "type": "int"
+              }
+            },
+            "type": "object"
+          },
+          "href": {
+            "type": "string"
+          },
+          "images": {
+            "type": "array",
+            "items": {
+              "title": "SpotifyWebAPIImage",
+              "properties": {
+                "height": {
+                  "type": "integer",
+                  "example": 320
+                },
+                "url": {
+                  "type": "string",
+                  "example": ""
+                },
+                "width": {
+                  "type": "integer",
+                  "example": 320
+                }
+              },
+              "type": "object"
+            }
+          },
+          "type": {
+            "type": "string"
+          },
+          "uri": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "UserLevel": {
+        "properties": {
+          "level": {
+            "type": "integer",
+            "enum": [
+              "Basic",
+              "VIP",
+              "Friend"
+            ]
+          }
+        },
+        "type": "object"
+      },
+      "FollowedPlaylist": {
+        "description": "A Playlist that you follow on Spotify as returned directly from Spotify. For more information please see their documentation: https://developer.spotify.com/documentation/web-api/reference/playlists/get-a-list-of-current-users-playlists/",
+        "type": "object",
+        "externalDocs": {
+          "url": "https://developer.spotify.com/documentation/web-api/reference/playlists/get-a-list-of-current-users-playlists/"
+        },
+        "example": "{'collaborative':false,'description':'Low Distraction but High Energy. Regularly Updated and Regular Rotation. | #log:14-Apr-20: +1026 -1026;','external_urls':{'spotify':'https:\\/\\/open.spotify.com\\/playlist\\/50lZXeoa91z4BO70r42Gg4'},'href':'https:\\/\\/api.spotify.com\\/v1\\/playlists\\/50lZXeoa91z4BO70r42Gg4','id':'50lZXeoa91z4BO70r42Gg4','images':[{'height':null,'url':'https:\\/\\/i.scdn.co\\/image\\/ab67706c0000da84b0f66f13615222bff6b31471','width':null}],'name':'WritheM Radio','owner':{'display_name':'WritheM','external_urls':{'spotify':'https:\\/\\/open.spotify.com\\/user\\/gl2o829k023l9p1yjywglio61'},'href':'https:\\/\\/api.spotify.com\\/v1\\/users\\/gl2o829k023l9p1yjywglio61','id':'gl2o829k023l9p1yjywglio61','type':'user','uri':'spotify:user:gl2o829k023l9p1yjywglio61'},'primary_color':null,'public':false,'snapshot_id':'MjUxNCxmZmEyN2QyZTVhYzIzYzA3MjUxNGVkODA0ZDQwMmI0ZDE1OWQ5YzU0','tracks':{'href':'https:\\/\\/api.spotify.com\\/v1\\/playlists\\/50lZXeoa91z4BO70r42Gg4\\/tracks','total':2719},'type':'playlist','uri':'spotify:playlist:50lZXeoa91z4BO70r42Gg4'}"
+      },
+      "PlaylistLink": {
+        "description": "A Playlist that you follow on Spotify as returned directly from Spotify. For more information please see their documentation: https://developer.spotify.com/documentation/web-api/reference/playlists/get-a-list-of-current-users-playlists/",
+        "properties": {
+          "id": {
+            "type": "?string",
+            "example": "50lZXeoa91z4BO70r42Gg4"
+          },
+          "owner-id": {
+            "description": "the username of the owner of the linked playlist",
+            "type": "?string",
+            "example": "gl2o829k023l9p1yjywglio61"
+          },
+          "mode": {
+            "enum": [
+              "blacklist",
+              "include"
+            ],
+            "example": "1"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "Request Successful - Content Follows",
+        "content": {
+          "application/json": {
+            "schema": {}
+          }
+        }
+      },
+      "201": {
+        "description": "POST Successful - Content Created"
+      },
+      "204": {
+        "description": "Request Successful - No Content"
+      },
+      "304": {
+        "description": "Request Unsuccessful - Changes already made"
+      },
+      "400": {
+        "description": "Bad Request",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/APIError"
+            }
+          }
+        }
+      },
+      "402": {
+        "description": "API Key Rejected",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/APIError"
+            }
+          }
+        }
+      },
+      "403": {
+        "description": "Request Rejected - Provided resource does not belong to you",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/APIError"
+            }
+          }
+        }
+      },
+      "404": {
+        "description": "Request Rejected - Provided resource not found in your account",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/APIError"
+            }
+          }
+        }
+      },
+      "409": {
+        "description": "API Error - Please Retry",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/APIError"
+            }
+          }
+        }
+      },
+      "429": {
+        "description": "API Rate Limit - Please Retry",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/APIError"
+            }
+          }
+        }
+      },
+      "498": {
+        "description": "Bad API Key Provided",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/APIError"
+            }
+          }
+        }
+      },
+      "499": {
+        "description": "No API Key Provided",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/APIError"
+            }
+          }
+        }
+      },
+      "501": {
+        "description": "Method not supported",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/APIError"
+            }
+          }
+        }
+      }
+    },
+    "parameters": {
+      "apiKey": {
+        "name": "apikey",
+        "in": "header",
+        "description": "Found on your profile page, this is the api key that has been assigned to you. Only VIP Members have an API Key",
+        "schema": {
+          "type": "string",
+          "example": "6c99cd8918f3c762a12c05de1272d13a"
+        }
+      }
+    }
+  }
+}
