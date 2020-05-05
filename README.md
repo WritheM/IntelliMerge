@@ -1,4 +1,4 @@
-![](https://writhem.net/intellimerge/logo.png) 
+![](https://writhem.net/intellimerge/images/logo.png) 
 
 You have found the GitHub repository for **IntelliMerge for Spotify**. This repository has been set up to serve two purposes:
 
