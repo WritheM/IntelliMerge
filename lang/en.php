@@ -13,6 +13,11 @@ $lang['terms'] = "Terms";
 $lang['all_rights'] = "All rights reserved";
 $lang['changelog']['english_only'] = "We apologize the change-log is only available in English at this time.";
 
+$lang['tracking']['title'] = "Accept Tracking";
+$lang['tracking']['description'] = "This will let you opt-out of tracking. You may choose to prevent us from aggregating and analyzing the actions you take here. Doing so will protect your privacy, but will also prevent us from learning from your actions and creating a better experience for you and other users.";
+$lang['tracking']['dnt_enabled'] = $lang['tracking']['description'] . " This option is currently disabled since your browser is reporting that you do not want to be tracked. This is a setting of your browser so you won't be able to opt-in until you disable the 'Do Not Track' feature.";
+$lang['tracking']['opted_out'] = "You have opted out of Tracking. We have saved this setting in a cookie in your browser, which means that you may need to set this setting on each device you use. We do not save this setting account wide";
+
 $lang['vip_sign_up'] = "Sign Up Now";
 $lang['vip_manage'] = "Manage Your Subscription";
 $lang['vip_benefits'] = [];
@@ -39,10 +44,7 @@ array_push($lang['vip_benefits'],['icon' => "api",
     'help_content' => "Although we give you access to refresh your playlists via API, please, please, PLEASE do not implement an automatic schedule for more than what we already have for you. This is meant to provide one-off functionality when you add/remove content. If we notice a large number of api requests for this functionality we may revoke your api key."]);
 array_push($lang['vip_benefits'],['icon' => "history",
     'title' => "Master Playlist Update Logs",
-    'description' => "We'll give you access to the update logs, letting you see how much was added or removed for the last 20 runs for each Master Playlist.",
-    'help_icon' => "alert-decagram",
-    'help_title' => "Coming Soon.",
-    'help_content' => "We are tracking all changes/updates, and this information is accessible via the API, but we haven't added to the front-end yet."]);
+    'description' => "We'll give you access to the update logs, letting you see how much was added or removed for the last 20 runs for each Master Playlist."]);
 array_push($lang['vip_benefits'],['icon' => "webhook",
     'title' => "Webhooks",
     'description' => "Once we finish updating your playlists, we'll send an update package to the webhook url that you define. Use this to get notifications in slack, discord, IFTTT, or many others.",
