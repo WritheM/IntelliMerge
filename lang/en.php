@@ -8,6 +8,7 @@ $lang['site']['title'] = "IntelliMerge for Spotify";
 
 $lang['login'] = "Login";
 $lang['logout'] = "Logout";
+$lang['go_back'] = "Go back";
 $lang['privacy'] = "Privacy";
 $lang['terms'] = "Terms";
 $lang['all_rights'] = "All rights reserved";
@@ -18,9 +19,14 @@ $lang['tracking']['description'] = "This will let you opt-out of tracking. You m
 $lang['tracking']['dnt_enabled'] = $lang['tracking']['description'] . " This option is currently disabled since your browser is reporting that you do not want to be tracked. This is a setting of your browser so you won't be able to opt-in until you disable the 'Do Not Track' feature.";
 $lang['tracking']['opted_out'] = "You have opted out of Tracking. We have saved this setting in a cookie in your browser, which means that you may need to set this setting on each device you use. We do not save this setting account wide";
 
+$lang['errors']['error'] = "Error";
+$lang['errors']['tech_details'] = "Some technical details on that error are:";
+$lang['errors']['db_unavailable'] = "It looks as though we are currently experiencing database issues. You wont be able to proceed until the issue is resolved, but rest assured we are aware.";
+$lang['errors']['cant_login'] = "Yikes. Something went wrong when trying to log you in with that code. It could be a temporary problem with Spotify, in which case you can try again in a sec, or it might a problem on our end.";
+
 $lang['vip_sign_up'] = "Sign Up Now";
 $lang['vip_manage'] = "Manage Your Subscription";
-$lang['vip_benefits'] = [];
+$lang['vip_benefits'] = []; // array(10)
 array_push($lang['vip_benefits'],['icon' => "text-box-multiple-outline",
     'title' => "Longer Playlists",
     'description' => "By default we only pull the first {$cfg['app']['playlist_limit_basic']} songs before we stop. If you have VIP we up that limit to {$cfg['app']['playlist_limit_vip']}."]);
@@ -80,7 +86,7 @@ $lang['about']['title'] = "About/FAQ";
 $lang['about']['description'] = "The purpose of this site is to take several Spotify Playlists and generate a single playlist from them.<br/>The system then monitors those lists for changes and propagates any changes to the master list. This means that you can now follow spotify created lists or user created lists that change frequently to make your own mix in a single list. Ideal for mobile users. Can also be used to merge Spotify playlists!";
 $lang['about']['q_a']['first_run']['question'] = "Hey, I'm new. How do I merge my lists? What are all these buttons?";
 $lang['about']['q_a']['first_run']['answer']['intro'] = "First off. Welcome! Thank you for choosing {$lang['site']['title']}. Here is a quick crash course to getting your first Master Playlist set up and monitoring playlists for changes.";
-$lang['about']['q_a']['first_run']['answer']['steps'] = [];
+$lang['about']['q_a']['first_run']['answer']['steps'] = []; // array(6)
 array_push($lang['about']['q_a']['first_run']['answer']['steps'],['title'=>"Creating your first Master Playlist",
     'body'=>"The first thing you'll want to do is head to the <a href=\"editor.php\">Playlist Editor</a> and create a Master Playlist. This is the playlist that the system will change as your linked playlists change. You can <div class=\"btn btn-info btn-sm\"><i class=\"mdi mdi-14px mdi-arrow-down-bold-box\"></i></div>import an existing playlist from Spotify or <div class=\"btn btn-success btn-sm\"><i class=\"mdi mdi-14px mdi-new-box\"></i></div>create a new playlist"]);
 array_push($lang['about']['q_a']['first_run']['answer']['steps'],['title'=>"Creating Playlist Links to your Master Playlist",
@@ -99,7 +105,7 @@ $lang['about']['q_a']['feature']['question'] = "I found a bug or I have a featur
 $lang['about']['q_a']['feature']['answer'] = "Great! We've built the site based largely on feedback from people just like yourself. We would love to have your input. You can head over to our <i class='mdi mdi-github'></i><a href='https://github.com/WritheM/IntelliMerge' target='_blank'>GitHub</a> repository to make your feature requests or bug reports. We have some great resources for contributing to the project there including a preview of some features that might be added to future versions of {$lang['site']['title']}.";
 $lang['about']['q_a']['privacy']['question'] = "What do you do with my data?";
 $lang['about']['q_a']['privacy']['answer']['intro'] = "Your privacy is important to us so we wanted to expand on our <a href=\"//writhem.com/privacy.php\" target=\"_blank\">Privacy Policy</a> and how it pertains specifically to {$lang['site']['title']}";
-$lang['about']['q_a']['privacy']['answer']['points'] = [];
+$lang['about']['q_a']['privacy']['answer']['points'] = []; // array(4)
 array_push($lang['about']['q_a']['privacy']['answer']['points'], "We will never sell your information either as an anonymized collection or as distinct. Unless required to share any information by law enforcement agencies or agreements with our third party vendors (including but not limited to Spotify), we will never willingly give information about your usage of this service to anyone. You can always request an export of the data that we capture about you as well. Please create a support ticket for this and allow 7-14 days for us to process requests of this nature");
 array_push($lang['about']['q_a']['privacy']['answer']['points'],"We only capture information from your account or usage that we absolutely require to perform the services we promise to provide. In addition to this, we only request access to the elements of your account that we absolutely require to perform the services we promise to you. This means things like age, name, or any security information about your Spotify profile are never stored in our database. We do log IP addresses and information such as browser used, but never store this in any way that can be 'linked' to a specific user. This technical information is captured to monitor security and performance as well as develop the service further (If the majority of our users switch to Internet Explorer 6.0 then we may consider re-writing our website to support that). Most recently this is what has led us to completely rewrite the website with mobile first design. We found that >65% of our users were mobile users");
 array_push($lang['about']['q_a']['privacy']['answer']['points'],"If you're using our API we do log detailed information about its usage. This includes when, who, and what is requested. We only log uses of our API if directly using an APIKey and not when a user is logged in. Only VIPs are given the option to generate an APIKey. Usage of our API constitutes agreement with our detailed logging");
@@ -112,7 +118,7 @@ $lang['about']['q_a']['coverart']['question'] = "What are those numbers in the p
 $lang['about']['q_a']['coverart']['answer'] = "Those numbers in the last update section of the graphic are what the system did to your track count last time it updated your master playlist. It will show the last date that it updated (according to UTC) and how many songs were added or removed. In this example there were 20 songs added and 3 removed. Now you know when the last time the master list was updated and by how much :)";
 $lang['about']['q_a']['legal']['question'] = "Are there certain legal things I should be aware of?";
 $lang['about']['q_a']['legal']['answer']['intro'] = "Thanks for asking such a non-scripted question! As a part of using this service there are certain conditions that you agree to as outlined in the privacy policy and terms of use documents linked in the footer of this page. There are some additional terms as outlined here. By signing in, and authorizing this app on your Spotify account, you hereby provide your agreement to the following";
-$lang['about']['q_a']['legal']['answer']['points'] = [];
+$lang['about']['q_a']['legal']['answer']['points'] = []; // array(5)
 array_push($lang['about']['q_a']['legal']['answer']['points'], "We do not make any warranties or representations on behalf of Spotify and we expressly disclaim all implied warranties with respect to the Spotify Platform, Spotify Service and Spotify Content, including the implied warranties of merchantability, fitness for a particular purpose and non-infringement");
 array_push($lang['about']['q_a']['legal']['answer']['points'], "You agree that you are prohibited from modifying or creating derivative works based on the Spotify Platform, Spotify Service or Spotify Content");
 array_push($lang['about']['q_a']['legal']['answer']['points'], "You are prohibited from decompiling, reverse-engineering, disassembling, and otherwise reducing the Spotify Platform, Spotify Service, and Spotify Content to source code or other human-perceivable form, to the full extent allowed by law");
@@ -126,7 +132,7 @@ $lang['about']['q_a']['changelog']['question'] = "Is there a changelog?";
 $lang['about']['q_a']['changelog']['answer'] = "Here is a copy of the updates as they were originally posted on the main page. Each named version is included below. <br />We are currently running version: {$cfg['app']['version']} build: {$cfg['app']['build']}";
 $lang['about']['stats']['question'] = "Show me some cool stats?";
 $lang['about']['stats']['answer']['intro'] = "Alright. We don't have a lot of data but";
-$lang['about']['stats']['answer']['points'] = [];
+$lang['about']['stats']['answer']['points'] = []; // array(3)
 array_push($lang['about']['stats']['answer']['points'], "We monitor lists for %total_users% accounts");
 array_push($lang['about']['stats']['answer']['points'], "These users have %total_mpls% master lists that are linked on Spotify");
 array_push($lang['about']['stats']['answer']['points'], "These users have created %total_spls% playlist links");
