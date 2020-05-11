@@ -2,7 +2,7 @@
 /**
  * To add to a newly Supported languages, first you will need to define your two letter ISO-639-1 language code,
  * then the language name in the native tongue. Additionally the language file containing all localisations will need to
- * be named to match the two letter language code. example: en.php, de.php.
+ * be named to match the two letter language code. example: en.php, de.php. template.php outlines all language variables.
  * To add to an existing supported language, open the two letter language local file and add/change any of the array
  * elements with the translated text. html is supported. If an array element is not defined, the front-end will
  * default back to the english one.
