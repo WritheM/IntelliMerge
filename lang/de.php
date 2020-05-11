@@ -30,9 +30,9 @@ $lang['vip_legal'];
 
 
 /**
- * index.php aka Home
+ * index.php aka Start
  **/
-$lang['home']['title'];
+$lang['home']['title'] = "Start";
 $lang['home']['description'] = "Mit diesem hilfreichen Werkzeug kannst du Wiedergabelisten (Master-Playlists) erstellen, die intelligent genug sind, um sich basierend auf den Inhalten anderer Wiedergabelisten selbst zu aktualisieren. Wolltest du schon immer eine von Spotify kuratierte Playlist in deine eigene Playlist einbinden, ohne dass du dafür etwas machen musst? Jetzt kannst du es. Mit {$lang ['site'] ['title']} kannst du Wiedergabelisten miteinander verkn&uuml;pfen. Wir überprüfen dann regelm&auml;&szlig;ig, ob sich etwas geändert hat und Aktualisieren deine Listen.";
 $lang['home']['maintenace_mode']['title'] = "HINWEIS";
 $lang['home']['maintenace_mode']['body'] = "Diese Seite befindet sich derzeit im Wartungsmodus. Wir sind bald wieder für dich da! Weitere Informationen findest du hier: <a target=\"_blank\" href=\"https://status.writhem.com/\">https://status.writhem.com/</a>";
