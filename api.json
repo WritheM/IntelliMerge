@@ -11,7 +11,7 @@
       "name": "Apache 2.0",
       "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "version": "2.0"
+    "version": "2.2"
   },
   "servers": [
     {
@@ -333,7 +333,7 @@
                     "example": 1337
                   },
                   "spotifyid": {
-                    "description": "The Spotify ID of the Playlist that will be linked. (The Slave)",
+                    "description": "The Spotify ID/SPECIAL_TYPE of the Playlist/Collection that will be linked. (The Slave)",
                     "type": "string",
                     "example": "50lZXeoa91z4BO70r42Gg4"
                   },
