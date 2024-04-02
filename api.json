@@ -11,19 +11,47 @@
       "name": "Apache 2.0",
       "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "version": "2.2"
+    "version": "2.3"
   },
   "servers": [
     {
-      "url": "https://writhem.net/intellimerge/api/",
-      "description": "Production Server"
-    },
-    {
       "url": "https://writhem.net/intellimerge-dev/api/",
       "description": "Development Server"
+    },
+    {
+      "url": "https://writhem.net/intellimerge/api/",
+      "description": "Production Server"
     }
   ],
   "paths": {
+    "/getProfileSettings": {
+      "get": {
+        "tags": [
+          "OtherActions"
+        ],
+        "description": "returns the settings of the current user.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/apiKey"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "An array of profile settings",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/getMasterPlaylists": {
       "get": {
         "tags": [
@@ -710,6 +738,14 @@
   },
   "components": {
     "schemas": {
+      "FollowedPlaylist": {
+        "description": "A Playlist that you follow on Spotify as returned directly from Spotify. For more information please see their documentation: https://developer.spotify.com/documentation/web-api/reference/playlists/get-a-list-of-current-users-playlists/",
+        "type": "object",
+        "externalDocs": {
+          "url": "https://developer.spotify.com/documentation/web-api/reference/playlists/get-a-list-of-current-users-playlists/"
+        },
+        "example": "{'collaborative':false,'description':'Low Distraction but High Energy. Regularly Updated and Regular Rotation. | #log:14-Apr-20: +1026 -1026;','external_urls':{'spotify':'https:\\/\\/open.spotify.com\\/playlist\\/50lZXeoa91z4BO70r42Gg4'},'href':'https:\\/\\/api.spotify.com\\/v1\\/playlists\\/50lZXeoa91z4BO70r42Gg4','id':'50lZXeoa91z4BO70r42Gg4','images':[{'height':null,'url':'https:\\/\\/i.scdn.co\\/image\\/ab67706c0000da84b0f66f13615222bff6b31471','width':null}],'name':'WritheM Radio','owner':{'display_name':'WritheM','external_urls':{'spotify':'https:\\/\\/open.spotify.com\\/user\\/gl2o829k023l9p1yjywglio61'},'href':'https:\\/\\/api.spotify.com\\/v1\\/users\\/gl2o829k023l9p1yjywglio61','id':'gl2o829k023l9p1yjywglio61','type':'user','uri':'spotify:user:gl2o829k023l9p1yjywglio61'},'primary_color':null,'public':false,'snapshot_id':'MjUxNCxmZmEyN2QyZTVhYzIzYzA3MjUxNGVkODA0ZDQwMmI0ZDE1OWQ5YzU0','tracks':{'href':'https:\\/\\/api.spotify.com\\/v1\\/playlists\\/50lZXeoa91z4BO70r42Gg4\\/tracks','total':2719},'type':'playlist','uri':'spotify:playlist:50lZXeoa91z4BO70r42Gg4'}"
+      },
       "APIError": {
         "properties": {
           "code": {
@@ -815,9 +851,33 @@
               "type": "object"
             }
           },
+          "links": {
+            "description": "An array of PlaylistLinks.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PlaylistLink"
+            }
+          },
           "errors": {
             "type": "integer",
             "example": 0
+          }
+        },
+        "type": "object"
+      },
+      "PlaylistLink": {
+        "description": "A Playlist that you follow on Spotify as returned directly from Spotify. For more information please see their documentation: https://developer.spotify.com/documentation/web-api/reference/playlists/get-a-list-of-current-users-playlists/",
+        "properties": {
+          "id": {
+            "type": "?string",
+            "example": "50lZXeoa91z4BO70r42Gg4"
+          },
+          "mode": {
+            "enum": [
+              "exclude",
+              "include"
+            ],
+            "example": 1
           }
         },
         "type": "object"
@@ -937,36 +997,6 @@
               "VIP",
               "Friend"
             ]
-          }
-        },
-        "type": "object"
-      },
-      "FollowedPlaylist": {
-        "description": "A Playlist that you follow on Spotify as returned directly from Spotify. For more information please see their documentation: https://developer.spotify.com/documentation/web-api/reference/playlists/get-a-list-of-current-users-playlists/",
-        "type": "object",
-        "externalDocs": {
-          "url": "https://developer.spotify.com/documentation/web-api/reference/playlists/get-a-list-of-current-users-playlists/"
-        },
-        "example": "{'collaborative':false,'description':'Low Distraction but High Energy. Regularly Updated and Regular Rotation. | #log:14-Apr-20: +1026 -1026;','external_urls':{'spotify':'https:\\/\\/open.spotify.com\\/playlist\\/50lZXeoa91z4BO70r42Gg4'},'href':'https:\\/\\/api.spotify.com\\/v1\\/playlists\\/50lZXeoa91z4BO70r42Gg4','id':'50lZXeoa91z4BO70r42Gg4','images':[{'height':null,'url':'https:\\/\\/i.scdn.co\\/image\\/ab67706c0000da84b0f66f13615222bff6b31471','width':null}],'name':'WritheM Radio','owner':{'display_name':'WritheM','external_urls':{'spotify':'https:\\/\\/open.spotify.com\\/user\\/gl2o829k023l9p1yjywglio61'},'href':'https:\\/\\/api.spotify.com\\/v1\\/users\\/gl2o829k023l9p1yjywglio61','id':'gl2o829k023l9p1yjywglio61','type':'user','uri':'spotify:user:gl2o829k023l9p1yjywglio61'},'primary_color':null,'public':false,'snapshot_id':'MjUxNCxmZmEyN2QyZTVhYzIzYzA3MjUxNGVkODA0ZDQwMmI0ZDE1OWQ5YzU0','tracks':{'href':'https:\\/\\/api.spotify.com\\/v1\\/playlists\\/50lZXeoa91z4BO70r42Gg4\\/tracks','total':2719},'type':'playlist','uri':'spotify:playlist:50lZXeoa91z4BO70r42Gg4'}"
-      },
-      "PlaylistLink": {
-        "description": "A Playlist that you follow on Spotify as returned directly from Spotify. For more information please see their documentation: https://developer.spotify.com/documentation/web-api/reference/playlists/get-a-list-of-current-users-playlists/",
-        "properties": {
-          "id": {
-            "type": "?string",
-            "example": "50lZXeoa91z4BO70r42Gg4"
-          },
-          "owner-id": {
-            "description": "the username of the owner of the linked playlist",
-            "type": "?string",
-            "example": "gl2o829k023l9p1yjywglio61"
-          },
-          "mode": {
-            "enum": [
-              "blacklist",
-              "include"
-            ],
-            "example": "1"
           }
         },
         "type": "object"
