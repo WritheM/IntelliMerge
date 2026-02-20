@@ -11,7 +11,7 @@
       "name": "Apache 2.0",
       "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "version": "2.3"
+    "version": "2.3.1"
   },
   "servers": [
     {
@@ -457,6 +457,15 @@
                     ],
                     "example": 0
                   },
+                  "updatelog": {
+                    "description": "If the system should update the description master playlist when it updates the contents of it after the #log tag. Note: Disable is a VIP Only feature.",
+                    "type": "tinyint",
+                    "enum": [
+                      "Disabled",
+                      "Enabled"
+                    ],
+                    "example": 0
+                  },
                   "remove_old": {
                     "description": "If the system should Remove old songs no longer found on the linked playlists marked as include. NOTE: This will cause an ever-growing playlist that will no longer be incrimented once it hits the maximum playlist length.",
                     "type": "tinyint",
@@ -788,21 +797,6 @@
             "description": "The name given to the MasterPlaylist when originally creating it. Does not include any changes that are made on Spotify. We do not keep this updated. It's just for reference.",
             "type": "string",
             "example": "WritheM Radio"
-          },
-          "options": {
-            "properties": {
-              "coverart": {
-                "description": "Should we update the graphic on Spotify when we update the contents of the Master Playlist?",
-                "type": "boolean",
-                "example": false
-              },
-              "remove_old": {
-                "description": "Should we remove songs from the Master Playlist that are no longer found in the linked playlists?",
-                "type": "boolean",
-                "example": true
-              }
-            },
-            "type": "object"
           },
           "history": {
             "description": "An array of history items. max 21 items will be loaded. 0 indexed. 0 will always be last updated.",
